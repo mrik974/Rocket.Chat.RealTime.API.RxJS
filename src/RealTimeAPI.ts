@@ -5,7 +5,7 @@
 import { Observable } from "rxjs";
 import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import { v4 as uuid } from "uuid";
-import { SHA256 } from "crypto-js";
+import {sha256} from 'js-sha256';
 
 export class RealTimeAPI {
     public url: string;
@@ -121,7 +121,7 @@ export class RealTimeAPI {
                 {
                     "user": { [usernameType]: username },
                     "password": {
-                        "digest": SHA256(password).toString(),
+                        "digest": sha256(password),
                         "algorithm": "sha-256"
                     }
                 }
