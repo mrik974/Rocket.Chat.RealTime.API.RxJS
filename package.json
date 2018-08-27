@@ -1,35 +1,52 @@
 {
-  "name": "rocket.chat.realtime.api.rxjs",
-  "version": "0.0.0-development",
+  "_from": "rocket.chat.realtime.api.rxjs@0.0.4",
+  "_id": "rocket.chat.realtime.api.rxjs@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-yv61dp8APnBh9zZ9Q8BWZOEXOxQ=",
+  "_location": "/rocket.chat.realtime.api.rxjs",
+  "_phantomChildren": {
+    "symbol-observable": "1.0.1"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "rocket.chat.realtime.api.rxjs@0.0.4",
+    "name": "rocket.chat.realtime.api.rxjs",
+    "escapedName": "rocket.chat.realtime.api.rxjs",
+    "rawSpec": "0.0.4",
+    "saveSpec": null,
+    "fetchSpec": "0.0.4"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/rocket.chat.realtime.api.rxjs/-/rocket.chat.realtime.api.rxjs-0.0.4.tgz",
+  "_shasum": "cafeb5769f003e7061f7367d43c05664e1173b14",
+  "_spec": "rocket.chat.realtime.api.rxjs@0.0.4",
+  "_where": "/Users/mrik/git_repos/madelink/user-interface",
+  "author": {
+    "name": "Viraj Trivedi",
+    "email": "inf3cti0n95@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "js-sha256": "0.9.0",
+    "rxjs": "^5.4.1",
+    "uuid": "^3.1.0"
+  },
+  "deprecated": false,
   "description": "Abstraction for Utilizing Rocket.Chat's Realtime API Methods with RxJS",
-  "main": "lib/index.js",
+  "devDependencies": {
+    "@types/uuid": "^3.0.0",
+    "typescript": "^2.3.4"
+  },
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {
-    "js-sha256": "0.9.0",
-    "rxjs": "^6.1.0",
-    "uuid": "^3.1.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^23.1.1",
-    "@types/uuid": "^3.0.0",
-    "jest": "^23.1.0",
-    "mock-socket": "^7.1.0",
-    "ts-jest": "^22.4.6",
-    "typescript": "^2.3.4",
-    "travis-deploy-once": "^5.0.0",
-    "semantic-release": "^15.6.0"
-  },
-  "scripts": {
-    "test": "jest --env=jsdom",
-    "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS.git"
-  },
+  "homepage": "https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS#readme",
   "keywords": [
     "Rocket.Chat",
     "RealTime API",
@@ -37,28 +54,15 @@
     "Observable",
     "Abstraction"
   ],
-  "author": "Viraj Trivedi <inf3cti0n95@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS/issues"
+  "main": "lib/index.js",
+  "name": "rocket.chat.realtime.api.rxjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS.git"
   },
-  "homepage": "https://github.com/inf3cti0n95/Rocket.Chat.RealTime.API.RxJS#readme",
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "tsconfig.json"
-      }
-    },
-    "testMatch": [
-      "**/__tests__/*.+(ts|tsx|js)"
-    ]
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.4"
 }

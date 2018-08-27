@@ -4,7 +4,7 @@
 
 import { Observable } from "rxjs";
 import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
-import { v4 as uuid } from "uuid";
+import { v1 as uuid } from "uuid";
 import {sha256} from 'js-sha256';
 
 export class RealTimeAPI {

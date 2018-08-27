@@ -1,6 +1,7 @@
 /**
  * Rocket.Chat RealTime API
  */
+import { Observable } from "rxjs";
 import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 export declare class RealTimeAPI {
     url: string;
@@ -9,11 +10,11 @@ export declare class RealTimeAPI {
     /**
      * Returns the Observable to the RealTime API Socket
      */
-    getObservable(): any;
+    getObservable(): Observable<any>;
     /**
      * Disconnect the WebSocket Connection between client and RealTime API
      */
-    disconnect(): any;
+    disconnect(): void;
     /**
      * onMessage
      */
@@ -37,15 +38,15 @@ export declare class RealTimeAPI {
     /**
      * getObservableFilteredByMessageType
      */
-    getObservableFilteredByMessageType(messageType: string): any;
+    getObservableFilteredByMessageType(messageType: string): Observable<any>;
     /**
      * getObservableFilteredByID
      */
-    getObservableFilteredByID(id: string): any;
+    getObservableFilteredByID(id: string): Observable<any>;
     /**
      * connectToServer
      */
-    connectToServer(): any;
+    connectToServer(): Observable<any>;
     /**
      * keepAlive, Ping and Pong to the Rocket.Chat Server to Keep the Connection Alive.
      */
@@ -53,25 +54,25 @@ export declare class RealTimeAPI {
     /**
      * Login with Username and Password
      */
-    login(username: string, password: string): any;
+    login(username: string, password: string): Observable<any>;
     /**
      * Login with Authentication Token
      */
-    loginWithAuthToken(authToken: string): any;
+    loginWithAuthToken(authToken: string): Observable<any>;
     /**
      * Login with OAuth, with Client Token and Client Secret
      */
-    loginWithOAuth(credToken: string, credSecret: string): any;
+    loginWithOAuth(credToken: string, credSecret: string): Observable<any>;
     /**
      * getLoginObservable
      */
-    getLoginObservable(id: string): any;
+    getLoginObservable(id: string): Observable<any>;
     /**
      * Get Observalble to the Result of Method Call from Rocket.Chat Realtime API
      */
-    callMethod(method: string, ...params: Array<{}>): any;
+    callMethod(method: string, ...params: Array<{}>): Observable<any>;
     /**
      * getSubscription
      */
-    getSubscription(streamName: string, streamParam: string, addEvent: boolean): any;
+    getSubscription(streamName: string, streamParam: string, addEvent: boolean): Observable<any>;
 }
