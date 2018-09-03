@@ -3,9 +3,10 @@
  */
 
 import { Observable } from "rxjs";
-import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
+import { WebSocketSubject } from 'rxjs/WebSocket';
 import { v1 as uuid } from "uuid";
-import {sha256} from 'js-sha256';
+import { sha256 } from 'js-sha256';
+import { merge, of } from 'rxjs';
 
 export class RealTimeAPI {
     public url: string;
@@ -15,7 +16,7 @@ export class RealTimeAPI {
         switch (typeof param) {
             case "string":
                 this.url = param as string;
-                this.webSocket = Observable.webSocket(this.url);
+                this.webSocket = new WebSocketSubject(this.url);
                 break;
             case "object":
                 this.webSocket = param as WebSocketSubject<{}>;
@@ -30,7 +31,7 @@ export class RealTimeAPI {
      * Returns the Observable to the RealTime API Socket
      */
     public getObservable() {
-        return this.webSocket.catch(err => Observable.of(err));
+        return this.webSocket.catchError((err: any) => of(err));
     }
 
     /**
@@ -73,7 +74,7 @@ export class RealTimeAPI {
      * sendMessage to Rocket.Chat Server
      */
     public sendMessage(messageObject: {}): void {
-        this.webSocket.next(JSON.stringify(messageObject));
+        this.webSocket.next(messageObject);
     }
 
     /**
@@ -103,7 +104,7 @@ export class RealTimeAPI {
      */
     public keepAlive(): void {
         this.getObservableFilteredByMessageType("ping").subscribe(
-            message => this.sendMessage({ msg: "pong" })
+            this.sendMessage({ msg: "pong" })
         );
     }
 
@@ -180,8 +181,8 @@ export class RealTimeAPI {
             }
         );
 
-        let addedObservable = this.getObservable().buffer(resultObservable).find(obj => obj.find(msg => msg.id === resultId && resultId !== undefined) !== undefined).map(obj => obj[0]);
-        return Observable.merge(resultObservable, addedObservable);
+        let addedObservable = this.getObservable().buffer(resultObservable).find((obj : any) => obj.find((msg : any) => msg.id === resultId && resultId !== undefined) !== undefined).map((obj : any) => obj[0]);
+        return merge(resultObservable, addedObservable);
     }
 
     /**
@@ -202,21 +203,23 @@ export class RealTimeAPI {
      * getSubscription
      */
     public getSubscription(streamName: string, streamParam: string, addEvent: boolean) {
-        let id = uuid();
+        const id = uuid();
+        const subMsg: any = {
+            "msg": "sub",
+            "id": id,
+            "name": streamName,
+            "params": [
+                streamParam,
+                addEvent
+            ]
+        };
+        const unsubMsg: any = {
+            "msg": "unsub",
+            "id": id
+        };
         let subscription = this.webSocket.multiplex(
-            () => JSON.stringify({
-                "msg": "sub",
-                "id": id,
-                "name": streamName,
-                "params": [
-                    streamParam,
-                    addEvent
-                ]
-            }),
-            () => JSON.stringify({
-                "msg": "unsub",
-                "id": id
-            }),
+            () => subMsg,
+            () => unsubMsg,
             (message: any) => typeof message.collection === "string" && message.collection === streamName && message.fields.eventName === streamParam // Proper Filtering to be done. This is temporary filter just for the stream-room-messages subscription
         );
         return subscription;
