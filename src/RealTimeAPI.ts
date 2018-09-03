@@ -3,7 +3,7 @@
  */
 
 import { Observable } from "rxjs";
-import { WebSocketSubject } from 'rxjs/WebSocket';
+import { WebSocketSubject } from 'rxjs/webSocket';
 import { v1 as uuid } from "uuid";
 import { sha256 } from 'js-sha256';
 import { merge, of } from 'rxjs';
@@ -31,7 +31,7 @@ export class RealTimeAPI {
      * Returns the Observable to the RealTime API Socket
      */
     public getObservable() {
-        return this.webSocket.catchError((err: any) => of(err));
+        return this.webSocket.catch((err: any) => of(err));
     }
 
     /**
